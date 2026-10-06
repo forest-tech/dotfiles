@@ -60,9 +60,14 @@ alias tmux='tmux -f ~/.config/tmux/.tmux.conf'
 # -----------------------------------------------------------------------------
 # History confirms this was initialized from ~/.zshrc. Keep it before fzf so
 # fzf owns Ctrl-R, matching the surviving behavior.
+# Atuin: history recording only; do not touch keybindings
+export ATUIN_NOBIND=true
 if command -v atuin >/dev/null 2>&1; then
   eval "$(atuin init zsh)"
 fi
+
+# Restore normal zsh Ctrl-P
+bindkey '^P' up-line-or-history
 
 # -----------------------------------------------------------------------------
 # fzf
