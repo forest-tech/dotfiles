@@ -34,4 +34,8 @@ decorations = "Buttonless"
 
 [terminal.shell]
 program = "/bin/zsh"
-args = ["-l", "-c", "exec /opt/homebrew/bin/tmux -f \"$HOME/.config/tmux/.tmux.conf\""]
+args = [
+  "-l",
+  "-c",
+  "if /opt/homebrew/bin/tmux -f \"$HOME/.config/tmux/.tmux.conf\" has-session 2>/dev/null; then exec /opt/homebrew/bin/tmux -f \"$HOME/.config/tmux/.tmux.conf\" attach-session; else exec /opt/homebrew/bin/tmux -f \"$HOME/.config/tmux/.tmux.conf\" new-session -s scratch; fi"
+]
