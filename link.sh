@@ -37,6 +37,8 @@ link_dotfile ".zshrc"
 link_dotfile ".vimrc"
 link_dotfile ".config/starship.toml"
 link_dotfile ".config/alacritty"
+link_dotfile ".config/ghostty"
+link_dotfile ".config/nvim"
 link_dotfile ".config/tmux"
 link_dotfile ".config/wezterm"
 
