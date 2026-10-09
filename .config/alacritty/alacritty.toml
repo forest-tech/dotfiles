@@ -32,6 +32,9 @@ blinking = "Never"
 opacity = 0.8
 decorations = "Buttonless"
 
+[colors]
+transparent_background_colors = true
+
 [terminal.shell]
 program = "/bin/zsh"
 args = [
