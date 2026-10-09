@@ -56,6 +56,30 @@ alias gs='git status'
 alias tmux='tmux -f ~/.config/tmux/.tmux.conf'
 
 # -----------------------------------------------------------------------------
+# Clipboard
+# -----------------------------------------------------------------------------
+# Copy a PNG image to the macOS clipboard.
+cpng() {
+  if (( $# != 1 )); then
+    print -u2 "Usage: cpng <file.png>"
+    return 2
+  fi
+
+  local file="${1:A}"
+
+  if [[ ! -f "$file" ]]; then
+    print -u2 "cpng: file not found: $file"
+    return 1
+  fi
+
+  osascript -e '
+    on run argv
+      set the clipboard to (read (POSIX file (item 1 of argv)) as «class PNGf»)
+    end run
+  ' "$file"
+}
+
+# -----------------------------------------------------------------------------
 # fzf
 # -----------------------------------------------------------------------------
 # Exact values recovered from the live shell.

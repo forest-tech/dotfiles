@@ -2,6 +2,6 @@
 
 ## 使ってるツール
 
-- fzf
-- ghq
-- gwq 
+- `fzf`
+- `ghq`
+- `gwq`
