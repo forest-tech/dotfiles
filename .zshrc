@@ -1,6 +1,7 @@
 # ~/.zshrc
 # Reconstructed from the running shell after the 2026-10-07 dotfiles loss.
 # Known runtime state is preferred over guesses.
+setopt interactivecomments
 
 # -----------------------------------------------------------------------------
 # PATH
@@ -84,7 +85,6 @@ cpng() {
 # -----------------------------------------------------------------------------
 # Exact values recovered from the live shell.
 export FZF_DEFAULT_OPTS='--height=25% --layout=reverse --border'
-export FZF_CTRL_R_OPTS='--height=10 --layout=reverse --border'
 
 # This recreates the observed Ctrl-T, Ctrl-R, Alt-C and completion bindings.
 if command -v fzf >/dev/null 2>&1; then
@@ -121,3 +121,8 @@ prompt pure
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
 fi
+
+# EOF
+
+# Added by Antigravity CLI installer
+export PATH="/Users/m.mori/.local/bin:$PATH"
