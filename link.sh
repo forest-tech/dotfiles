@@ -38,9 +38,11 @@ link_dotfile ".vimrc"
 link_dotfile ".config/starship.toml"
 link_dotfile ".config/alacritty"
 link_dotfile ".config/ghostty"
+link_dotfile ".config/gwq"
 link_dotfile ".config/nvim"
 link_dotfile ".config/tmux"
 link_dotfile ".config/wezterm"
+link_dotfile ".config/zsh"
 
 if [ "$BACKED_UP" -eq 1 ]; then
   printf '\nExisting files were backed up to: %s\n' "$BACKUP_DIR"

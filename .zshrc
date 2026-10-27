@@ -37,6 +37,12 @@ if command -v uv >/dev/null 2>&1; then
   eval "$(uv generate-shell-completion zsh)"
 fi
 
+# gwq completion. With cd.launch_shell = false in ~/.config/gwq/config.toml it
+# also defines a gwq() wrapper so `gwq cd` changes this shell's directory.
+if command -v gwq >/dev/null 2>&1; then
+  source <(gwq completion zsh)
+fi
+
 # -----------------------------------------------------------------------------
 # Aliases recovered from the running shell
 # -----------------------------------------------------------------------------
@@ -83,12 +89,17 @@ cpng() {
 # -----------------------------------------------------------------------------
 # fzf
 # -----------------------------------------------------------------------------
-# Exact values recovered from the live shell.
-export FZF_DEFAULT_OPTS='--height=25% --layout=reverse --border'
+# Values recovered from the live shell, plus the terminal's ANSI colors.
+export FZF_DEFAULT_OPTS='--height=25% --layout=reverse --border --color=16'
 
 # This recreates the observed Ctrl-T, Ctrl-R, Alt-C and completion bindings.
 if command -v fzf >/dev/null 2>&1; then
   source <(fzf --zsh)
+fi
+
+# tmux popup settings and gcd / groot / fbr / fbrm / flog / fe, Ctrl-G.
+if [[ -r ~/.config/zsh/functions/fzf.zsh ]]; then
+  source ~/.config/zsh/functions/fzf.zsh
 fi
 
 # -----------------------------------------------------------------------------

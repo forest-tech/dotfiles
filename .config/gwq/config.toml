@@ -1,0 +1,3 @@
+[cd]
+# Let the gwq() wrapper from `gwq completion zsh` cd in the current shell.
+launch_shell = false
