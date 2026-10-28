@@ -2,7 +2,7 @@
 import = ["~/.config/alacritty/themes/themes/iceberg.toml"]
 
 [font]
-size = 12
+size = 11.75
 builtin_box_drawing = true
 
 [font.normal]
