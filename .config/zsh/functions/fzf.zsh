@@ -26,6 +26,19 @@ f={}/README.md
 export FZF_CTRL_T_OPTS="--walker-skip=$_fzf_walker_skip --preview '[ -d {} ] && ls -G {} || $_fzf_file_preview'"
 export FZF_ALT_C_OPTS="--walker-skip=$_fzf_walker_skip --preview 'ls -G {}'"
 
+# Ctrl-R: keep history search inline under the prompt even inside tmux.
+# fzf's __fzfcmd only uses fzf-tmux when FZF_TMUX_OPTS is non-empty.
+_fzf_history_inline_widget() {
+  local FZF_TMUX_OPTS= FZF_TMUX=0
+  zle fzf-history-widget
+}
+if (( $+widgets[fzf-history-widget] )); then
+  zle -N _fzf_history_inline_widget
+  bindkey -M emacs '^R' _fzf_history_inline_widget
+  bindkey -M vicmd '^R' _fzf_history_inline_widget
+  bindkey -M viins '^R' _fzf_history_inline_widget
+fi
+
 # Run fzf the same way as the stock widgets: popup in tmux, inline otherwise.
 _fzf_popup() {
   if [[ -n ${TMUX_PANE-} ]] && (( $+commands[fzf-tmux] )); then

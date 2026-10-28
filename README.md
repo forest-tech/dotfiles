@@ -51,7 +51,7 @@
 
 ### tmux 内外での違い
 
-- tmux 内（`$TMUX_PANE` がある場合）: `FZF_TMUX_OPTS='-p 85%,85%'` により、上記コマンドと fzf 標準キーは `fzf-tmux` の popup で開きます。
+- tmux 内（`$TMUX_PANE` がある場合）: `FZF_TMUX_OPTS='-p 85%,85%'` により、上記コマンドと `Ctrl+T` / `Alt+C` は `fzf-tmux` の popup で開きます。`Ctrl+R`（履歴検索）だけは視線が動かないよう、tmux 内でもプロンプトの下に通常どおり表示します。
 - tmux 外: `FZF_DEFAULT_OPTS` のとおり、画面下部 25% に通常の fzf を表示します。
 - 配色は `--color=16` と `BAT_THEME=ansi` で、ターミナルの ANSI カラーに従います。
 
