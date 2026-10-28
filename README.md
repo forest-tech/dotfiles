@@ -71,6 +71,7 @@
 | `Prefix + g` | 現在の Pane のディレクトリで lazygit を popup 表示 |
 | `Prefix + G` | floating pane の move テーブル（tmux 3.8 の標準 `Prefix + g` から移動） |
 | `Prefix + t` | 現在の Pane のディレクトリでファイルを選び、絶対パスをコピー（tmux 標準の `clock-mode` を置き換え） |
+| `Prefix + v` | copy mode に入る（`Prefix + [` と同じ。SSH 先の `ssh.tmux.conf` でも有効） |
 
 - `Prefix + t` はパスを tmux buffer に入れ（`Prefix + ]` で貼り付け可能）、`pbcopy` があればクリップボードにもコピーします。`set-clipboard on` により OSC 52 でもターミナルへ送ります。
 - popup はシェルの子プロセスなので、popup 内で `cd` しても元の Pane の作業ディレクトリは変わりません。
