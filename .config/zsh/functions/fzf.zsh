@@ -25,6 +25,8 @@ f={}/README.md
 
 export FZF_CTRL_T_OPTS="--walker-skip=$_fzf_walker_skip --preview '[ -d {} ] && ls -G {} || $_fzf_file_preview'"
 export FZF_ALT_C_OPTS="--walker-skip=$_fzf_walker_skip --preview 'ls -G {}'"
+# The stock widget adds --min-height 20+, which outweighs --height=25%.
+export FZF_CTRL_R_OPTS='--height=15 --min-height=10'
 
 # Ctrl-R: keep history search inline under the prompt even inside tmux.
 # fzf's __fzfcmd only uses fzf-tmux when FZF_TMUX_OPTS is non-empty.
