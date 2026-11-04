@@ -32,6 +32,11 @@ blinking = "Never"
 opacity = 0.8
 decorations = "Buttonless"
 
+# 起動時に画面 (1470x956pt) の約 90% になる大きさ。セル 7x15.5pt から逆算
+[window.dimensions]
+columns = 188
+lines = 54
+
 [colors]
 transparent_background_colors = true
 
