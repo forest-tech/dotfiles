@@ -1,4 +1,5 @@
 local wezterm = require 'wezterm'
+local act = wezterm.action
 local config = wezterm.config_builder()
 
 -- Font
@@ -49,6 +50,151 @@ config.colors = {
     '#ada0d3',
     '#95c4ce',
     '#d2d4de',
+  },
+}
+
+-- =========================================================
+-- Leader
+-- =========================================================
+
+-- Ctrl-o を WezTerm の prefix にする
+config.leader = {
+  key = 'o',
+  mods = 'CTRL',
+  timeout_milliseconds = 1000,
+}
+
+-- =========================================================
+-- Helper
+-- =========================================================
+
+-- pane を移動したあと、一時的に pane movement mode に入る
+local function activate_pane(direction)
+  return act.Multiple {
+    act.ActivatePaneDirection(direction),
+    act.ActivateKeyTable {
+      name = 'pane_movement',
+      one_shot = false,
+      timeout_milliseconds = 1000,
+    },
+  }
+end
+
+-- =========================================================
+-- Key bindings
+-- =========================================================
+
+config.keys = {
+  -- -------------------------------------------------------
+  -- WezTerm pane
+  -- -------------------------------------------------------
+
+  -- Ctrl-o ^ : 左右に分割
+  {
+    key = '^',
+    mods = 'LEADER',
+    action = act.SplitHorizontal {
+      domain = 'CurrentPaneDomain',
+    },
+  },
+
+  -- Ctrl-o - : 上下に分割
+  {
+    key = '-',
+    mods = 'LEADER',
+    action = act.SplitVertical {
+      domain = 'CurrentPaneDomain',
+    },
+  },
+
+  -- -------------------------------------------------------
+  -- Ctrl-o passthrough
+  -- -------------------------------------------------------
+
+  -- Ctrl-o Ctrl-o:
+  -- WezTerm の leader を抜けて、terminal に Ctrl-o を送る
+  {
+    key = 'o',
+    mods = 'LEADER|CTRL',
+    action = act.SendKey {
+      key = 'o',
+      mods = 'CTRL',
+    },
+  },
+
+  -- -------------------------------------------------------
+  -- pane movement
+  -- -------------------------------------------------------
+
+  -- Ctrl-o + 矢印で pane を移動し、
+  -- その後1秒間は矢印だけで連続移動できる
+  {
+    key = 'RightArrow',
+    mods = 'LEADER',
+    action = activate_pane 'Right',
+  },
+  {
+    key = 'LeftArrow',
+    mods = 'LEADER',
+    action = activate_pane 'Left',
+  },
+  {
+    key = 'DownArrow',
+    mods = 'LEADER',
+    action = activate_pane 'Down',
+  },
+  {
+    key = 'UpArrow',
+    mods = 'LEADER',
+    action = activate_pane 'Up',
+  },
+
+  -- -------------------------------------------------------
+  -- Workspace selector
+  -- -------------------------------------------------------
+
+  -- tmux の prefix + s に近い操作で workspace を切り替える
+  {
+    key = 's',
+    mods = 'LEADER',
+    action = act.ShowLauncherArgs {
+      flags = 'FUZZY|WORKSPACES',
+    },
+  },
+}
+
+-- =========================================================
+-- Key tables
+-- =========================================================
+
+-- pane movement mode
+--
+-- Ctrl-o + 矢印を押したあと、
+-- 1秒以内なら矢印だけで pane を連続移動できる
+config.key_tables = {
+  pane_movement = {
+    {
+      key = 'RightArrow',
+      action = act.ActivatePaneDirection 'Right',
+    },
+    {
+      key = 'LeftArrow',
+      action = act.ActivatePaneDirection 'Left',
+    },
+    {
+      key = 'DownArrow',
+      action = act.ActivatePaneDirection 'Down',
+    },
+    {
+      key = 'UpArrow',
+      action = act.ActivatePaneDirection 'Up',
+    },
+
+    -- Esc でも pane movement mode を終了できる
+    {
+      key = 'Escape',
+      action = 'PopKeyTable',
+    },
   },
 }
 
