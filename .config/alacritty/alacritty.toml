@@ -6,20 +6,20 @@ size = 11.75
 builtin_box_drawing = true
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "UDEV Gothic 35NF"
 style = "Regular"
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "UDEV Gothic 35NF"
 style = "Bold"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
+family = "UDEV Gothic 35NF"
 style = "Italic"
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font"
-style = "Bold Italic"
+family = "UDEV Gothic 35NF"
+style = "BoldItalic"
 
 [cursor]
 # thickness = 0.15
